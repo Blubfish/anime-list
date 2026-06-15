@@ -8,6 +8,7 @@ export const myAnimeList = async () => {
     },
   });
   const allAnime = await response.json();
+  
   return allAnime.map((anime: AnimeRow) => ({
     ...anime,
     aniListId: anime.anilist_id,
