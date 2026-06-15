@@ -1,0 +1,5 @@
+{
+  "codeium.enableCodeLens": true,
+  "codeium.enableInComments": true,
+  "codeium.disableSupercomplete": true
+}

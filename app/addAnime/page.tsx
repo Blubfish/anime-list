@@ -1,11 +1,15 @@
-import Link from "next/link";
-import AnimeList from "./AnimeList";
-import StatPanel from "./StatPanel";
+import AddAnimeFormClient from "./AddAnimeForm";
+import fetchAnimeById from "@/lib/fetchAnimeById";
 import { myAnimeList } from "@/lib/getMyAnimeList";
 
-export default async function Home() {
-  const allAnime = await myAnimeList();
-
+export default async function AddAnime({
+  searchParams,
+}: {
+  searchParams: Promise<{ aniListId: string }>;
+}) {
+  const { aniListId } = await searchParams;
+  const animeData = await fetchAnimeById(Number(aniListId));
+  const savedAnimeList = await myAnimeList();
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-indigo-950 px-4 py-6 sm:px-6 lg:px-8">
       <div
@@ -22,37 +26,25 @@ export default async function Home() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-2">
               <p className="text-sm uppercase tracking-[0.28em] text-orange-300/80">
-                My collection
+                Add anime
               </p>
               <h1 className="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-4xl font-bold leading-tight text-transparent">
-                Anime List
+                Add a new anime
               </h1>
               <p className="max-w-2xl text-sm leading-6 text-slate-400">
-                Keep track of what you watched, how you rated it, and what to
-                explore next.
+                Search for an anime, pick your favorite result, and save it to
+                your list.
               </p>
             </div>
-            <Link
-              href="/addAnime"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-md shadow-orange-500/20 ring-1 ring-orange-300/30 transition hover:brightness-110 hover:shadow-orange-500/40 focus:outline-none focus:ring-2 focus:ring-orange-300/50"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className="h-4 w-4"
-              >
-                <path
-                  fill="currentColor"
-                  d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                />
-              </svg>
-              Add Anime
-            </Link>
           </div>
         </div>
 
-        <StatPanel myAnimeList={allAnime} />
-        <AnimeList animeList={allAnime} />
+        <div className="rounded-3xl border border-slate-800/80 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl">
+          <AddAnimeFormClient
+            animeData={animeData}
+            savedAnimeList={savedAnimeList}
+          />
+        </div>
       </div>
     </main>
   );

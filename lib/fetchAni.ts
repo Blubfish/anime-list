@@ -1,0 +1,48 @@
+export default async function fetchAni(title: string) {
+  const query = `
+      query ($search: String) {
+        Page(perPage: 8) {
+          media(search: $search, type: ANIME) {
+            id
+            title {
+              romaji
+              english
+              native
+            }
+            coverImage {
+              extraLarge
+            }
+
+            isAdult
+            genres
+            episodes
+
+            tags {
+              name
+              rank
+            }
+
+          }
+        }
+      }
+    `;
+
+  try {
+    const response = await fetch("https://graphql.anilist.co", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: { search: title },
+      }),
+    });
+
+    const data = await response.json();
+
+    return data?.data?.Page.media ?? [];
+  } catch (error) {
+    console.log(error);
+  }
+}
