@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import AnimeForm from "../components/AnimeForm";
-import { Anime, AnimeData } from "../type";
+import { Anime, AnimeData, AnimeRow } from "../type";
 
 type AddAnimeFormProps = {
   animeData: AnimeData | null;
-  savedAnimeList: Anime[];
+  savedAnimeList: AnimeRow[];
 };
 
 export default function AddAnimeForm({

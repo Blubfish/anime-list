@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import fetchAni from "../../lib/fetchAni";
 import Image from "next/image";
 import AnimePreview from "./AnimePreview";
-import { Anime, AnimeData } from "../type";
+import { Anime, AnimeData, AnimeRow } from "../type";
 import {
   Combobox,
   ComboboxContent,
@@ -18,7 +18,7 @@ import {
 type AnimeFormProps = {
   anime?: Anime;
   onSubmit: (formData: Anime) => Promise<void>;
-  savedAnimeList?: Anime[];
+  savedAnimeList?: AnimeRow[];
 };
 
 export default function AnimeForm({
@@ -45,7 +45,7 @@ export default function AnimeForm({
   const filterAnime = animeOption.filter(
     (anime) =>
       !anime.isAdult &&
-      !savedAnimeList.some((saved) => saved.aniListId === anime.id),
+      !savedAnimeList.some((saved) => saved.anilist_id === anime.id),
   );
 
   useEffect(() => {

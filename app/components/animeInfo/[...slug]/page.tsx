@@ -3,7 +3,7 @@ import BackButton from "../BackButton";
 import { myAnimeList } from "@/lib/getMyAnimeList";
 import RecommendedAnimeForm from "@/app/components/animeInfo/RecommendedAnimeForm";
 import AnimeInfo from "../AnimeInfo";
-import { Anime } from "@/app/type";
+import { AnimeRow } from "@/app/type";
 
 export default async function animeInfo({
   params,
@@ -14,7 +14,7 @@ export default async function animeInfo({
   const [aniListId, id] = resolvedParams.slug;
 
   const list = await myAnimeList();
-  const saved = list.find((a: Anime) => a.aniListId === Number(aniListId));
+  const saved = list.find((a: AnimeRow) => a.anilist_id === Number(aniListId));
   const isOnMyAniList = Boolean(saved);
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-indigo-950 px-4 py-6 sm:px-6 lg:px-8">

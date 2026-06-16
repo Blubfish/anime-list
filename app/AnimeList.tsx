@@ -6,23 +6,10 @@ import { genreClasses, tagClasses } from "./components/colorStyles";
 import Link from "next/link";
 import { allStatus, allGenres, allTags } from "./constants/animeOptions";
 import FilterForm from "./components/FilterForm";
-
-type Anime = {
-  title: string;
-  rating: number;
-  status: string;
-  note: string | null;
-  anime_id: number;
-  image: string;
-  genres: string[];
-  episodes: number;
-  aniListId: number;
-  tags: string[];
-  episodesWatched: number | "";
-};
+import { AnimeRow } from "./type";
 
 type AnimeListProps = {
-  animeList: Anime[];
+  animeList: AnimeRow[];
 };
 
 export default function AnimeList({ animeList }: AnimeListProps) {
@@ -143,14 +130,14 @@ export default function AnimeList({ animeList }: AnimeListProps) {
             const genres = anime.genres.filter(Boolean);
             const tags = anime.tags.filter(Boolean);
             const episodesWatched =
-              anime.episodesWatched === "" ? 0 : anime.episodesWatched;
+              anime.episodes_watched === "" ? 0 : Number(anime.episodes_watched);
             const hasEpisodes = anime.episodes > 0;
 
             return (
               <Link
                 key={anime.anime_id}
                 className="group block w-full rounded-2xl border border-slate-800/80 bg-slate-950/70 p-3 text-left text-slate-300 shadow-lg shadow-black/30 ring-1 ring-transparent transition hover:-translate-y-0.5 hover:border-orange-400/50 hover:shadow-orange-500/10 hover:ring-orange-400/20"
-                href={`/components/animeInfo/${anime.aniListId}/${anime.anime_id}`}
+                href={`/components/animeInfo/${anime.anilist_id}/${anime.anime_id}`}
               >
                 <div className="flex gap-4">
                   <div className="h-[170px] w-[120px] shrink-0 overflow-hidden rounded-xl bg-slate-800 ring-1 ring-slate-700/80">

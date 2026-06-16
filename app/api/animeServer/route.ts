@@ -89,15 +89,3 @@ export async function POST(request: Request) {
     return Response.json({ message: "Something Went Wrong " }, { status: 500 });
   }
 }
-
-export async function GET() {
-  try {
-    const result = await pool.query(
-      "SELECT * FROM public.anime ORDER BY rating DESC",
-    );
-    return Response.json(result.rows);
-  } catch (error) {
-    console.log(error);
-    return Response.json({ message: "Something Went Wrong" }, { status: 500 });
-  }
-}

@@ -1,7 +1,7 @@
-import { Anime } from "./type";
+import { AnimeRow } from "./type";
 
 type StatPanelProps = {
-  myAnimeList: Anime[];
+  myAnimeList: AnimeRow[];
 };
 
 export default function StatPanel({ myAnimeList }: StatPanelProps) {

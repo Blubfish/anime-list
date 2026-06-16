@@ -42,10 +42,10 @@ export type AnimeRow = {
   rating: number;
   status: string;
   note: string | null;
-  image: string | null;
-  genres: string[] | null;
-  anilist_id: number | null;
-  episodes: number | null;
-  tags: string[] | null;
-  episodes_watched: number | null;
+  image: string;
+  genres: string[]
+  anilist_id: number;
+  episodes: number;
+  tags: string[];
+  episodes_watched: number | "";
 };

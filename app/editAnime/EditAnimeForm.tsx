@@ -3,12 +3,12 @@
 import AnimeForm from "../components/AnimeForm";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Anime } from "../type";
+import { AnimeRow, Anime } from "../type";
 
 type EditAnimePageProps = {
   anime: Anime;
   animeID: number;
-  savedAnimeList: Anime[];
+  savedAnimeList: AnimeRow[];
 };
 
 export default function EditAnimePage({

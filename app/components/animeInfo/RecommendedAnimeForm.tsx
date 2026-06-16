@@ -1,10 +1,10 @@
 import fetchRecommendations from "../../../lib/fetchRecommendations";
 import Image from "next/image";
 import Link from "next/link";
-import { Anime, AnimeData } from "../../type";
+import { AnimeRow, AnimeData, Anime } from "../../type";
 type RecommendedAnimeFormProps = {
   aniListId: number;
-  savedAnimeList?: Anime[];
+  savedAnimeList?: AnimeRow[];
 };
 export default async function RecommendedAnimeForm({
   aniListId,
@@ -23,7 +23,7 @@ export default async function RecommendedAnimeForm({
     .filter(
       (anime: Anime) =>
         !anime.isAdult &&
-        !savedAnimeList.some((saved) => saved.aniListId === anime.aniListId),
+        !savedAnimeList.some((saved) => saved.anilist_id === anime.aniListId),
     )
     .slice(0, 12);
 
