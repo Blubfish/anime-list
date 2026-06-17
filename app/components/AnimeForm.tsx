@@ -68,17 +68,17 @@ export default function AnimeForm({
     e.preventDefault();
 
     try {
-      onSubmit({
+      await onSubmit({
         ...formData,
         episodesWatched:
           formData.episodesWatched === "" ? 0 : formData.episodesWatched,
       });
+      router.push("/");
+      router.refresh();
     } catch (error) {
       console.log(error);
+      alert("Fail To Save Anime");
     }
-
-    router.push("/");
-    router.refresh();
   }
 
   return (

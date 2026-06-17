@@ -1,5 +1,5 @@
 import { AnimeRow } from "@/app/type";
-import { Pool } from 'pg';
+import { Pool } from "pg";
 
 const envContent = process.env.DATABASE_URL;
 
@@ -9,7 +9,7 @@ export const pool = new Pool({
 
 async function getAnimeList() {
   const result = await pool.query(
-    "SELECT * FROM public.anime ORDER BY rating DESC"
+    "SELECT * FROM public.anime ORDER BY rating DESC",
   );
   return result.rows;
 }

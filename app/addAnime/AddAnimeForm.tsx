@@ -3,6 +3,7 @@
 import Link from "next/link";
 import AnimeForm from "../components/AnimeForm";
 import { Anime, AnimeData, AnimeRow } from "../type";
+import { handleSubmit } from "./actions";
 
 type AddAnimeFormProps = {
   animeData: AnimeData | null;
@@ -33,20 +34,6 @@ export default function AddAnimeForm({
       }
     : null;
 
-  async function handleSubmit(formData: Anime) {
-    try {
-      await fetch(`/api/animeServer`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET ?? "",
-        },
-        body: JSON.stringify(formData),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
   return (
     <div>
       <div className="mb-6 flex items-center justify-between gap-3">

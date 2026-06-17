@@ -43,7 +43,7 @@ export type AnimeRow = {
   status: string;
   note: string | null;
   image: string;
-  genres: string[]
+  genres: string[];
   anilist_id: number;
   episodes: number;
   tags: string[];

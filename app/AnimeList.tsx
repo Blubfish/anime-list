@@ -130,7 +130,9 @@ export default function AnimeList({ animeList }: AnimeListProps) {
             const genres = anime.genres.filter(Boolean);
             const tags = anime.tags.filter(Boolean);
             const episodesWatched =
-              anime.episodes_watched === "" ? 0 : Number(anime.episodes_watched);
+              anime.episodes_watched === ""
+                ? 0
+                : Number(anime.episodes_watched);
             const hasEpisodes = anime.episodes > 0;
 
             return (

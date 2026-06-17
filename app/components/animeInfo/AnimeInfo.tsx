@@ -11,7 +11,7 @@ type AnimeInfoProps = {
 
 export default async function AnimeInfo({ id, note }: AnimeInfoProps) {
   const anime: AnimeData | null = await fetchAnimeById(id);
-  
+
   if (!anime) {
     return (
       <div className="rounded-3xl border border-slate-800/80 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-8 text-slate-300 shadow-2xl shadow-black/40 backdrop-blur-xl">

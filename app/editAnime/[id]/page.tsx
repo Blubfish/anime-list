@@ -1,6 +1,8 @@
 import EditAnimePageClient from "../EditAnimeForm";
 import RecommendedAnimeForm from "@/app/components/animeInfo/RecommendedAnimeForm";
 import { myAnimeList } from "@/lib/getMyAnimeList";
+import { handleGet } from "../actions";
+import { notFound } from "next/navigation";
 
 export default async function EditAnimePage({
   params,
@@ -9,16 +11,16 @@ export default async function EditAnimePage({
 }) {
   const { id } = await params;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`, {
-    method: "GET",
-  });
+  const animeRow = await handleGet(Number(id));
 
-  const animeRow = await response.json();
+  if (!animeRow) return notFound();
+
   const anime = {
     ...animeRow,
     aniListId: animeRow.anilist_id,
     episodesWatched: animeRow.episodes_watched ?? 0,
   };
+
   const savedAnimeList = await myAnimeList();
 
   return (

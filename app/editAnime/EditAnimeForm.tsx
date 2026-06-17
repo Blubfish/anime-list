@@ -4,6 +4,7 @@ import AnimeForm from "../components/AnimeForm";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AnimeRow, Anime } from "../type";
+import { handleDelete, handleUpdate } from "./actions";
 
 type EditAnimePageProps = {
   anime: Anime;
@@ -17,29 +18,6 @@ export default function EditAnimePage({
   savedAnimeList,
 }: EditAnimePageProps) {
   const router = useRouter();
-
-  async function handleUpdate(formData: Anime) {
-    await fetch(`/api/animeServer/${animeID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.NEXT_PUBLIC_API_SECRET ?? "",
-      },
-      body: JSON.stringify(formData),
-    });
-  }
-
-  async function handleDelete() {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${animeID}`, {
-      method: "DELETE",
-      headers: {
-        "x-api-key": process.env.NEXT_PUBLIC_API_SECRET ?? "",
-      },
-    });
-
-    router.push("/");
-    router.refresh();
-  }
 
   return (
     <div>
@@ -84,7 +62,11 @@ export default function EditAnimePage({
 
           <button
             type="button"
-            onClick={handleDelete}
+            onClick={async () => {
+              handleDelete(animeID);
+              router.push("/");
+              router.refresh();
+            }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-500 to-rose-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-md shadow-red-500/20 ring-1 ring-red-300/30 transition hover:brightness-110 hover:shadow-red-500/40 focus:outline-none focus:ring-2 focus:ring-red-300/50"
           >
             <svg
@@ -105,7 +87,7 @@ export default function EditAnimePage({
 
       <AnimeForm
         anime={anime}
-        onSubmit={handleUpdate}
+        onSubmit={async (animeData) => await handleUpdate(animeData, animeID)}
         savedAnimeList={savedAnimeList}
       />
     </div>
