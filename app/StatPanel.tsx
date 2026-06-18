@@ -15,6 +15,12 @@ export default function StatPanel({ myAnimeList }: StatPanelProps) {
   const totalPlanned = myAnimeList.filter(
     (anime) => anime.status === "Plan to Watch",
   ).length;
+  const totalHold = myAnimeList.filter(
+    (anime) => anime.status === "On Hold",
+  ).length;
+  const totalWatching = myAnimeList.filter(
+    (anime) => anime.status === "Watching",
+  ).length;
 
   return (
     <section className="rounded-3xl border border-slate-800/80 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl">
@@ -30,7 +36,7 @@ export default function StatPanel({ myAnimeList }: StatPanelProps) {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {[
           {
             label: "Total anime",
@@ -100,10 +106,44 @@ export default function StatPanel({ myAnimeList }: StatPanelProps) {
             ),
             iconColor: "text-sky-300",
           },
+          {
+            label: "On Hold",
+            value: totalHold,
+            accent: "bg-stone-500/10 text-stone-300 ring-stone-500/20",
+            icon: (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+              </svg>
+            ),
+            iconColor: "text-stone-300",
+          },
+          {
+            label: "Watching",
+            value: totalWatching,
+            accent: "bg-violet-500/10 text-violet-300 ring-violet-500/20",
+            icon: (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+              </svg>
+            ),
+            iconColor: "text-violet-300",
+          },
         ].map((item) => (
           <div
             key={item.label}
-            className={`rounded-2xl bg-slate-800/60 p-5 ring-1 ${item.accent} transition`}
+            className={`rounded-2xl p-5 ring-1 ${item.accent} transition`}
           >
             <div className="flex items-center gap-2">
               <span className={item.iconColor}>{item.icon}</span>
