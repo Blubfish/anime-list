@@ -48,6 +48,7 @@ export default async function AnimeInfo({ id, note }: AnimeInfoProps) {
               width={280}
               height={420}
               className="h-full w-full object-cover"
+              unoptimized
             />
           </div>
         </div>

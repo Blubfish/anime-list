@@ -151,6 +151,7 @@ export default function AnimeList({ animeList }: AnimeListProps) {
                         height={170}
                         className="h-full w-full object-cover"
                         priority={index === 0}
+                        unoptimized
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-slate-500">

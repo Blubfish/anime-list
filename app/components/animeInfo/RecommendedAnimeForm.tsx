@@ -77,6 +77,7 @@ export default async function RecommendedAnimeForm({
                   width={120}
                   height={180}
                   className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  unoptimized
                 />
                 {anime.averageScore ? (
                   <span className="absolute right-1.5 top-1.5 inline-flex items-center gap-1 rounded-full bg-slate-950/80 px-2 py-0.5 text-[10px] font-semibold text-amber-300 ring-1 ring-amber-400/30 backdrop-blur">
