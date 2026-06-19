@@ -45,7 +45,8 @@ export default function AnimeForm({
   const filterAnime = animeOption.filter(
     (anime) =>
       !anime.isAdult &&
-      !savedAnimeList.some((saved) => saved.anilist_id === anime.id),
+      !savedAnimeList.some((saved) => saved.anilist_id === anime.id) &&
+      anime.episodes
   );
 
   useEffect(() => {
