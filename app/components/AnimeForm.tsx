@@ -83,12 +83,13 @@ export default function AnimeForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" id="anime-form">
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-slate-200">
+        <label htmlFor="animeNameInput" className="text-sm font-semibold text-slate-200">
           Anime Name
         </label>
         <input
+          id="animeNameInput"
           type="text"
           placeholder="Enter anime name"
           value={formData.title}
@@ -160,7 +161,7 @@ export default function AnimeForm({
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-slate-200">Rating</label>
+          <p className="text-sm font-semibold text-slate-200">Rating</p>
           <Combobox
             items={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
             onValueChange={(rating) =>
@@ -191,7 +192,7 @@ export default function AnimeForm({
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-slate-200">Status</label>
+          <p className="text-sm font-semibold text-slate-200">Status</p>
           <Combobox
             items={[
               "Completed",
@@ -239,10 +240,11 @@ export default function AnimeForm({
 
       {["Watching", "Dropped", "On Hold"].includes(formData.status) && (
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-slate-200">
+          <label htmlFor="episodesWatchedInput" className="text-sm font-semibold text-slate-200">
             Episodes Watched
           </label>
           <input
+            id="episodesWatchedInput"
             type="number"
             min={0}
             max={formData.episodes}
@@ -261,10 +263,11 @@ export default function AnimeForm({
       )}
 
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-slate-200">
+        <label htmlFor="shortNoteForm" className="text-sm font-semibold text-slate-200">
           Extra Note
         </label>
         <textarea
+          id="shortNoteForm"
           placeholder="Add a short note..."
           value={formData.note}
           onChange={(e) => setFormData({ ...formData, note: e.target.value })}
