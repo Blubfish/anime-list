@@ -84,7 +84,6 @@ export default function AnimeForm({
       alert("Fail To Save Anime");
     }
   }
-  console.log(isUnlocked);
   if (!isUnlocked) {
     return <PasswordModal setIsUnlocked={setIsUnlocked} />;
   }
