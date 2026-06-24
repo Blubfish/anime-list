@@ -51,7 +51,10 @@ export default function AnimeList({ animeList }: AnimeListProps) {
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <div className="space-y-2">
-            <label htmlFor="searchAnimeName" className="block text-sm font-semibold text-slate-200">
+            <label
+              htmlFor="searchAnimeName"
+              className="block text-sm font-semibold text-slate-200"
+            >
               Search
             </label>
             <input
@@ -65,9 +68,7 @@ export default function AnimeList({ animeList }: AnimeListProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="block text-sm font-semibold text-slate-200">
-              Status
-            </p>
+            <p className="block text-sm font-semibold text-slate-200">Status</p>
             <FilterForm
               filterOption={allStatus}
               filterFunction={setStatusFilter}
@@ -77,9 +78,7 @@ export default function AnimeList({ animeList }: AnimeListProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="block text-sm font-semibold text-slate-200">
-              Genres
-            </p>
+            <p className="block text-sm font-semibold text-slate-200">Genres</p>
             <FilterForm
               filterOption={allGenres}
               filterFunction={setGenreFilter}
@@ -89,9 +88,7 @@ export default function AnimeList({ animeList }: AnimeListProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="block text-sm font-semibold text-slate-200">
-              Tags
-            </p>
+            <p className="block text-sm font-semibold text-slate-200">Tags</p>
             <FilterForm
               filterOption={allTags}
               filterFunction={setTagFilter}

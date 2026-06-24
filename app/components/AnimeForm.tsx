@@ -14,6 +14,8 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@/components/ui/combobox";
+import PasswordModal from "./PasswordModal";
+import usePassWordLocked from "./hook/usePasswordLock";
 
 type AnimeFormProps = {
   anime?: Anime;
@@ -46,8 +48,9 @@ export default function AnimeForm({
     (anime) =>
       !anime.isAdult &&
       !savedAnimeList.some((saved) => saved.anilist_id === anime.id) &&
-      anime.episodes
+      anime.episodes,
   );
+  const { isUnlocked, setIsUnlocked } = usePassWordLocked();
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
@@ -81,11 +84,18 @@ export default function AnimeForm({
       alert("Fail To Save Anime");
     }
   }
+  console.log(isUnlocked);
+  if (!isUnlocked) {
+    return <PasswordModal setIsUnlocked={setIsUnlocked} />;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" id="anime-form">
       <div className="flex flex-col gap-2">
-        <label htmlFor="animeNameInput" className="text-sm font-semibold text-slate-200">
+        <label
+          htmlFor="animeNameInput"
+          className="text-sm font-semibold text-slate-200"
+        >
           Anime Name
         </label>
         <input
@@ -240,7 +250,10 @@ export default function AnimeForm({
 
       {["Watching", "Dropped", "On Hold"].includes(formData.status) && (
         <div className="flex flex-col gap-2">
-          <label htmlFor="episodesWatchedInput" className="text-sm font-semibold text-slate-200">
+          <label
+            htmlFor="episodesWatchedInput"
+            className="text-sm font-semibold text-slate-200"
+          >
             Episodes Watched
           </label>
           <input
@@ -263,7 +276,10 @@ export default function AnimeForm({
       )}
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="shortNoteForm" className="text-sm font-semibold text-slate-200">
+        <label
+          htmlFor="shortNoteForm"
+          className="text-sm font-semibold text-slate-200"
+        >
           Extra Note
         </label>
         <textarea

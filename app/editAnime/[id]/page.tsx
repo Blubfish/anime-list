@@ -1,5 +1,4 @@
 import EditAnimePageClient from "../EditAnimeForm";
-import RecommendedAnimeForm from "@/app/components/animeInfo/RecommendedAnimeForm";
 import { myAnimeList } from "@/lib/getMyAnimeList";
 import { handleGet } from "../actions";
 import { notFound } from "next/navigation";
@@ -60,10 +59,6 @@ export default async function EditAnimePage({
               savedAnimeList={savedAnimeList}
             />
           </section>
-
-          <aside className="rounded-3xl border border-slate-800/80 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl">
-            <RecommendedAnimeForm aniListId={anime.aniListId} />
-          </aside>
         </div>
       </div>
     </main>

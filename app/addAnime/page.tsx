@@ -10,6 +10,7 @@ export default async function AddAnime({
   const { aniListId } = await searchParams;
   const animeData = await fetchAnimeById(Number(aniListId));
   const savedAnimeList = await myAnimeList();
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-indigo-950 px-4 py-6 sm:px-6 lg:px-8">
       <div
